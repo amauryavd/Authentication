@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="login" *ngIf="!switch">
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)">
+            <h1>LOG IN</h1>
+            <p [ngStyle]="errorMsgShow">{{errorMsg}}</p>
+
+            <label>Username</label>
+            <input name="name" type="text" formControlName="Email" (focus)="onFocus()" >
+            <label>Password</label>
+            <div class="toggle-pass">
+                <input name="password" [type]="showLoginPassword? 'text' : 'password'" formControlName="Password" (focus)="onFocus()" style="width: 100%;">
+                <span [ngClass]="showLoginPassword ? 'fa fa-fw fa-eye-slash': 'fa fa-fw fa-eye'" class="field-icon toggle-password" (click)="onShowPassword('login')"></span>
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid || isLoading">
+                    <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i> {{loginButton}}
+                </button>
+            <div class="register-link">
+                <a (click)="switch = !switch">Not registered yet? Click here to Sign-Up</a>
+            </div>
+        </form>
+    </div>
+    <div class="login register" *ngIf="switch">
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm)">
+            <h1 style="display: flex;
+                align-items: center;
+                justify-content: space-between;">REGISTER
+            </h1>
+            <p [ngStyle]="errorMsgShow">{{errorMsg}}</p>
+            <div class="row">
+                <div class="colum">
+                    <label>First Name</label>
+                    <input name="firsname" type="text" formControlName="FirstName" (focus)="onFocus()">
+                </div>
+                <div class="colum">
+                    <label>Last Name</label>
+                <input name="lastname" type="text" formControlName="LastName" (focus)="onFocus()">
+                </div>   
+            </div>
+            <div class="row">
+                <div class="colum" style="width: 70%;">
+                    <label>Email</label>
+                    <input name="email" type="text" formControlName="Email" (focus)="onFocus()">
+                </div>
+                <div class="colum" style="width: 30%;">
+                    <label>Gender</label>
+                    <!-- <input name="gender" type="text" formControlName="Gender" (focus)="onFocus()"> -->
+                    <select formControlName="Gender" name="gender" id="gender" style="padding: 0 15px;">
+                        <option class="option" value="Male">Male</option>
+                        <option class="option" value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="colum">
+                    <label>Password</label>
+                    <input name="password" type="password" formControlName="Password" (focus)="onFocus()">
+                </div>
+                <div class="colum">
+                    <label>Confirm Password</label>
+                    <div class="toggle-pass">
+                        <input #password name="password" [type]="showRegisterPassword ? 'text' : 'password'" formControlName="PasswordConfirm" (focus)="onFocus()" style="width: 100%;">
+                        <span toggle="#password-field" [ngClass]="showRegisterPassword ? 'fa fa-fw fa-eye-slash': 'fa fa-fw fa-eye'" class="field-icon toggle-password" (click)="onShowPassword('register')"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="registerForm.invalid || isLoading">
+                    <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i> {{registerButton}}
+            </button>
+        </form>
+    </div>
+</div>

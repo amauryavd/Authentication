@@ -1,0 +1,13 @@
+.container{
+    background: black;
+    max-width: 100%;
+    height: 100vh;
+}
+
+.container p{
+    color: white;
+}
+
+.container ul li{
+    color: white;
+}

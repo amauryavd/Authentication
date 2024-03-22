@@ -1,0 +1,12 @@
+<div class="container">
+    <ul>
+        <li>{{userDetails.userId}}</li>
+        <li>{{userDetails.firstName}}</li>
+        <li>{{userDetails.lastName}}</li>
+        <li>{{userDetails.email}}</li>
+        <li>{{userDetails.gender}}</li>
+        <li>{{userDetails.active}}</li>
+    </ul>
+    <button class="btn" (click)="logout()">logout</button>
+    <button (click)="getUser()" class="btn btn-success">GET</button>
+</div>
